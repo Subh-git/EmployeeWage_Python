@@ -1,7 +1,7 @@
 '''
 @Author: Subhadeep Bhattacharjee
 @Date: 2021-12-02 11:30
-@Title: To compute the employee wage salary.
+@Title: To compute the employee emp_hour salary.
 
 '''
 import random
@@ -9,37 +9,41 @@ import random
 #Declaring constants
 Is_Absent = 0
 Is_Present = 1
+Is_PartTime = 2
 
 
 def check_attendance():
     '''
-    Description: Checks the employee attendace.
+    Description: Checks the employee attendace and returns the employee houras per the attendace.
     '''
-    attendance = random.randint(0,1)
+    attendance = random.randint(0,2)
     match attendance:
         case 0: 
             print("Employee is absent")
-            return Is_Absent
+            emp_hour = 0
+            return emp_hour
         
         case 1: 
             print("Employee is present")
-            return Is_Present
+            emp_hour = 8
+            return emp_hour
+        
+        case 2:
+            print("Employee is part time")
+            emp_hour = 4
+            return emp_hour
 
 def calc_daily_wage():
     '''
-    Description: This function calculates the daily employee wage.
-    Returns: The daily wage.
+    Description: This function calculates the daily employee emp_hour.
+    Returns: The daily emp wage.
     '''
     wage_per_hour = 20
-    full_day_hour = 8
-
-    if (check_attendance() == Is_Present):
-        daily_wage = wage_per_hour * full_day_hour
-    
-    else:
-        daily_wage = 0
-    
+    hours = check_attendance()
+    daily_wage = hours * wage_per_hour
     return daily_wage
+
+
 
 
 
