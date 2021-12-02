@@ -11,6 +11,7 @@ Is_Absent = 0
 Is_Present = 1
 Is_PartTime = 2
 Days_In_Month = 20
+Max_Working_Hour = 100
 
 
 def check_attendance():
@@ -44,6 +45,7 @@ def calc_daily_wage():
     daily_wage = hours * wage_per_hour
     return daily_wage
 
+#for monthly calculation of employee wage.
 def calc_monthly_wage():
     '''
     Description: This function calculates the monthly wages.
@@ -51,17 +53,24 @@ def calc_monthly_wage():
     '''
     n = 0
     total_wage = 0
+    total_hours = 0
 
-    while (n < Days_In_Month):
+    while (n < Days_In_Month and total_hours < Max_Working_Hour ):
         daily_wg = calc_daily_wage()
         total_wage+= daily_wg
+        #we have to improvise by obtaining the daily hour by dividing daily wage by wage per hour.
+        #else we will get error in matching monthly wage and total hours.
+        total_hours+= int(daily_wg/20)   
         n+=1
 
+    print("The number of days is:",n)
+    print("Total hours:",total_hours)
     return total_wage
 
 
 
+
 if __name__ == '__main__':
-    print("The monthly wage is: ",calc_monthly_wage())
+    print("The monthly wage is:",calc_monthly_wage())
 
     
